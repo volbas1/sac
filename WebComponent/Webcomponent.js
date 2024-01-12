@@ -44,7 +44,7 @@ class LineChart extends HTMLElement {
     drawLineChart(ctx, xData, yData, width, height) {
         const dataPoints = xData.length;
         const xSpacing = (width - 60) / (dataPoints - 1);
-        const yScale = (height - 60) / Math.max(...yData);
+        const yScale = (height - 60);
 
         ctx.beginPath();
         ctx.moveTo(30, height - 30 - yData[0] * yScale);
