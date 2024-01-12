@@ -11,7 +11,7 @@
     "webcomponents": [
         {
             "kind": "main",
-            "tag": "custom-button",
+            "tag": "line-chart",
             "url": "https://volbas1.github.io/sac/WebComponent/Webcomponent.js",
             "integrity": "",
             "ignoreIntegrity": true

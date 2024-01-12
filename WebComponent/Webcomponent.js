@@ -7,6 +7,8 @@ class LineChart extends HTMLElement {
     }
 
     connectedCallback() {
+
+        console.log("customWidget connectedCallback")
         // Retrieve data attribute and parse it as an array
         const data = JSON.parse(this.getAttribute('data'));
 
