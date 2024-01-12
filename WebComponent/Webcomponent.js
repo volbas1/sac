@@ -1,31 +1,65 @@
-(function () {
-    let tmpl = document.createElement('template');
-    tmpl.innerHTML =
-        `<button type="button" id="myBtn">Helper Button</button>`;
-
-    class PerformanceHelp extends HTMLElement {
-        constructor() {
-            super();
-            this.init();
-        }
-
-        init() {
-
-            let shadowRoot = this.attachShadow({ mode: "open" });
-            shadowRoot.appendChild(tmpl.content.cloneNode(true));
-            this.addEventListener("click", event => {
-                var event = new Event("onClick");
-                this.fireChanged();
-                this.dispatchEvent(event);
-            });
-        }
-
-        fireChanged() {
-            console.log("OnClick Triggered");
-
-        }
-
+// Define the LineChart component
+class LineChart extends HTMLElement {
+    constructor() {
+        super();
+        // Create a shadow DOM
+        this.attachShadow({ mode: 'open' });
     }
 
-    customElements.define('custom-button', PerformanceHelp);
-})();
+    connectedCallback() {
+        // Retrieve data attribute and parse it as an array
+        const data = JSON.parse(this.getAttribute('data'));
+
+        // Create a canvas element
+        const canvas = document.createElement('canvas');
+        this.shadowRoot.appendChild(canvas);
+
+        // Get the canvas 2d context
+        const ctx = canvas.getContext('2d');
+
+        // Set canvas size
+        canvas.width = 400;
+        canvas.height = 300;
+
+        // Draw axes
+        this.drawAxes(ctx, canvas.width, canvas.height);
+
+        // Draw the line chart
+        this.drawLineChart(ctx, data, canvas.width, canvas.height);
+    }
+
+    drawAxes(ctx, width, height) {
+        // X-axis
+        ctx.beginPath();
+        ctx.moveTo(30, height - 30);
+        ctx.lineTo(width - 30, height - 30);
+        ctx.stroke();
+
+        // Y-axis
+        ctx.beginPath();
+        ctx.moveTo(30, 30);
+        ctx.lineTo(30, height - 30);
+        ctx.stroke();
+    }
+
+    drawLineChart(ctx, data, width, height) {
+        const dataPoints = data.length;
+        const xSpacing = (width - 60) / (dataPoints - 1);
+        const yScale = (height - 60) / Math.max(...data);
+
+        // Draw the line
+        ctx.beginPath();
+        ctx.moveTo(30, height - 30 - data[0] * yScale);
+
+        for (let i = 1; i < dataPoints; i++) {
+            ctx.lineTo(30 + i * xSpacing, height - 30 - data[i] * yScale);
+        }
+
+        ctx.strokeStyle = '#007BFF'; // Line color
+        ctx.lineWidth = 2;
+        ctx.stroke();
+    }
+}
+
+// Define the custom element
+customElements.define('line-chart', LineChart);
