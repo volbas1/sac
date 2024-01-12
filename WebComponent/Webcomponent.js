@@ -35,9 +35,9 @@ class LineChart extends HTMLElement {
         this.drawLineChart(ctx, data, xLabels, canvas.width, canvas.height);
 
         // Apply background image
-        const backgroundImage = this.getAttribute('background-image');
+        const backgroundImage = "https://upload.wikimedia.org/wikipedia/commons/d/d9/Kodaki_fuji_frm_shojinko.jpg";
         if (backgroundImage) {
-            this.style.backgroundImage = `url('https://upload.wikimedia.org/wikipedia/commons/d/d9/Kodaki_fuji_frm_shojinko.jpg')`;
+            this.style.backgroundImage = `url('${backgroundImage}')`;
         }
     }
 
