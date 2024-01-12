@@ -3,7 +3,7 @@
     "description": "Hello World",
     "newInstancePrefix": "mycustomwidget",
     "eula": "",
-    "vendor": "PranavKandpal",
+    "vendor": "Bas",
     "license": "",
     "id": "mycustomwidget",
     "version": "1.0.1",
@@ -12,7 +12,7 @@
         {
             "kind": "main",
             "tag": "custom-button",
-            "url": "https://kandpalpranav.github.io/CustomWidget/Webcomponent.js",
+            "url": "https://volbas1.github.io/sac/WebComponent/Webcomponent.js",
             "integrity": "",
             "ignoreIntegrity": true
         }
