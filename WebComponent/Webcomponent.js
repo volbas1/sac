@@ -69,7 +69,7 @@ class LineChart extends HTMLElement {
 
             // Display x-axis labels
             ctx.fillStyle = '#000';
-            ctx.fillText(xLabels[i - 1], 30 + i * xSpacing, height - 15);
+            ctx.fillText(xLabels[i - 1], i * xSpacing, height - 15);
         }
 
         ctx.strokeStyle = '#007BFF'; // Line color
