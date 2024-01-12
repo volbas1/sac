@@ -15,7 +15,7 @@ class LineChart extends HTMLElement {
 
         const xLabels = []//JSON.parse(this.getAttribute('x-labels'));
         this.myDataBinding.data.forEach(row => {
-            xLabels.push(row.dimension_0.id)
+            xLabels.push(row.dimensions_0.id)
         })
         // Create a canvas element
         const canvas = document.createElement('canvas');
