@@ -12,7 +12,7 @@ class LineChart extends HTMLElement {
         })
         var aYdata = [];
         this.myDataBinding.data.forEach(row => {
-            aYdata.push(row.dimension_0.raw)
+            aYdata.push(row.dimension_0.id)
         })
 
         const xData = JSON.parse(this.getAttribute('x-data'));
