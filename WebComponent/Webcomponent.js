@@ -9,6 +9,19 @@ class LineChart extends HTMLElement {
     connectedCallback() {
         // Retrieve data and x-axis labels attributes
         const data = [] //JSON.parse(this.getAttribute('data'));
+
+        var wait = function () {
+            if (this.myDataBinding.state === "loading") {
+                return false
+            } else {
+                return true
+            }
+        }
+
+        while (!wait()) {
+            console.log(1)
+        }
+
         this.myDataBinding.data.forEach(row => {
             data.push(row.measures_0.raw)
         })
