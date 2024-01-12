@@ -6,27 +6,9 @@ class LineChart extends HTMLElement {
         this.attachShadow({ mode: 'open' });
     }
 
-    async connectedCallback() {
+    connectedCallback() {
         // Retrieve data and x-axis labels attributes
         const data = [] //JSON.parse(this.getAttribute('data'));
-        var bLoading = true;
-
-        var wait = function () {
-            if (this.myDataBinding.state === "loading") {
-                return false
-            } else {
-                bLoading = false;
-                return true
-            }
-        }.bind(this)
-
-        do {
-            await wait(1000);
-            wait()
-
-
-        } while (bLoading);
-
         this.myDataBinding.data.forEach(row => {
             data.push(row.measures_0.raw)
         })
@@ -93,12 +75,6 @@ class LineChart extends HTMLElement {
         ctx.lineWidth = 2;
         ctx.stroke();
     }
-}
-
-function wait(time) {
-    return new Promise(resolve => {
-        setTimeout(resolve, time);
-    });
 }
 
 // Define the custom element
