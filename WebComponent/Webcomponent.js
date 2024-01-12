@@ -16,7 +16,7 @@ class LineChart extends HTMLElement {
             } else {
                 return true
             }
-        }
+        }.bind(this)
 
         while (!wait()) {
             console.log(1)
