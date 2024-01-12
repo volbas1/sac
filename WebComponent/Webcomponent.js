@@ -27,7 +27,11 @@ class LineChart extends HTMLElement {
         this.drawAxes(ctx, canvas.width, canvas.height);
 
         // Draw the line chart
-        this.drawLineChart(ctx, data, canvas.width, canvas.height);
+        this.myDataBinding.data.forEach(row => {
+            this.drawLineChart(ctx, row, canvas.width, canvas.height);
+        })
+
+
     }
 
     drawAxes(ctx, width, height) {
