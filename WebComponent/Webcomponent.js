@@ -33,6 +33,12 @@ class LineChart extends HTMLElement {
 
         // Draw the line chart with x-axis labels
         this.drawLineChart(ctx, data, xLabels, canvas.width, canvas.height);
+
+        // Apply background image
+        const backgroundImage = this.getAttribute('background-image');
+        if (backgroundImage) {
+            this.style.backgroundImage = `url('https://upload.wikimedia.org/wikipedia/commons/d/d9/Kodaki_fuji_frm_shojinko.jpg')`;
+        }
     }
 
     drawAxes(ctx, width, height) {
