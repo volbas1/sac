@@ -8,15 +8,20 @@ class LineChart extends HTMLElement {
 
     connectedCallback() {
         // Retrieve data and x-axis labels attributes
-        const data = [] //JSON.parse(this.getAttribute('data'));
-        this.myDataBinding.data.forEach(row => {
-            data.push(row.measures_0.raw)
-        })
 
+        const data = [] //JSON.parse(this.getAttribute('data'));
         const xLabels = []//JSON.parse(this.getAttribute('x-labels'));
-        this.myDataBinding.data.forEach(row => {
-            xLabels.push(row.dimensions_0.id)
-        })
+
+
+        if (this.myDataBinding.data) {
+            this.myDataBinding.data.forEach(row => {
+                data.push(row.measures_0.raw)
+            })
+            this.myDataBinding.data.forEach(row => {
+                xLabels.push(row.dimensions_0.id)
+            })
+        }
+
         // Create a canvas element
         const canvas = document.createElement('canvas');
         this.shadowRoot.appendChild(canvas);
