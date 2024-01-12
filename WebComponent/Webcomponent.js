@@ -7,11 +7,16 @@ class LineChart extends HTMLElement {
     }
 
     connectedCallback() {
+        // Retrieve data and x-axis labels attributes
+        const data = [] //JSON.parse(this.getAttribute('data'));
+        this.myDataBinding.data.forEach(row => {
+            data.push(row.measures_0.raw)
+        })
 
-        console.log("customWidget connectedCallback")
-        // Retrieve data attribute and parse it as an array
-        const data = JSON.parse(this.getAttribute('data'));
-
+        const xLabels = []//JSON.parse(this.getAttribute('x-labels'));
+        this.myDataBinding.data.forEach(row => {
+            xLabels.push(row.dimension_0.id)
+        })
         // Create a canvas element
         const canvas = document.createElement('canvas');
         this.shadowRoot.appendChild(canvas);
@@ -25,14 +30,9 @@ class LineChart extends HTMLElement {
 
         // Draw axes
         this.drawAxes(ctx, canvas.width, canvas.height);
-        // Draw the line chart
-        var aData = [];
-        this.myDataBinding.data.forEach(row => {
-            aData.push(row.measures_0.raw)
-        })
 
-        this.drawLineChart(ctx, aData, canvas.width, canvas.height);
-
+        // Draw the line chart with x-axis labels
+        this.drawLineChart(ctx, data, xLabels, canvas.width, canvas.height);
     }
 
     drawAxes(ctx, width, height) {
@@ -49,9 +49,8 @@ class LineChart extends HTMLElement {
         ctx.stroke();
     }
 
-    drawLineChart(ctx, data, width, height) {
+    drawLineChart(ctx, data, xLabels, width, height) {
         const dataPoints = data.length;
-
         const xSpacing = (width - 60) / (dataPoints - 1);
         const yScale = (height - 60) / Math.max(...data);
 
@@ -61,6 +60,10 @@ class LineChart extends HTMLElement {
 
         for (let i = 1; i < dataPoints; i++) {
             ctx.lineTo(30 + i * xSpacing, height - 30 - data[i] * yScale);
+
+            // Display x-axis labels
+            ctx.fillStyle = '#000';
+            ctx.fillText(xLabels[i - 1], 30 + i * xSpacing, height - 15);
         }
 
         ctx.strokeStyle = '#007BFF'; // Line color
