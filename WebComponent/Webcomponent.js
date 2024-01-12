@@ -64,7 +64,7 @@ class LineChart extends HTMLElement {
         ctx.beginPath();
         ctx.moveTo(30, height - 30 - data[0] * yScale);
 
-        for (let i = 1; i < dataPoints; i++) {
+        for (let i = 0; i < dataPoints; i++) {
             ctx.lineTo(30 + i * xSpacing, height - 30 - data[i] * yScale);
             // Display x-axis labels
             ctx.fillStyle = '#000';
