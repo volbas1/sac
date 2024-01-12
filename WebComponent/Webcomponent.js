@@ -66,15 +66,9 @@ class LineChart extends HTMLElement {
 
         for (let i = 1; i < dataPoints; i++) {
             ctx.lineTo(30 + i * xSpacing, height - 30 - data[i] * yScale);
-
             // Display x-axis labels
             ctx.fillStyle = '#000';
-            if (i === 1) {
-                ctx.fillText(xLabels[i - 1], 0, height - 15);
-            } else {
-                ctx.fillText(xLabels[i - 1], i * xSpacing, height - 15);
-            }
-
+            ctx.fillText(xLabels[i - 1], 30 + i * xSpacing, height - 15);
         }
 
         ctx.strokeStyle = '#007BFF'; // Line color
