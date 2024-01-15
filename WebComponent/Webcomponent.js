@@ -11,23 +11,26 @@ class LineChart extends HTMLElement {
 
         const data = [] //JSON.parse(this.getAttribute('data'));
         const xLabels = []//JSON.parse(this.getAttribute('x-labels'));
+        var bConnected = false;
 
-
-
-        var loadDate = new Promise((resolve, reject) => {
-            setTimeout((resolve) => {
-                if (this.myDataBinding?.state !== "loading") {
+        var _setSleep = async function (iMs) {
+            return new Promise(function (resolve, reject) {
+                this.toggleBusy(true);
+                setTimeout(function () {
                     resolve();
-                };
-            }, 3000).bind(this);
-        }).bind(this)
-
-
-
-        if (this.myDataBinding) {
-            await loadDate();
+                }.bind(this), iMs);
+            }.bind(this))
         }
 
+
+        while (!bConnected) {
+            this._setSleep(1500);
+            if (this.myDataBinding?.state) {
+                bConnected = false;
+            } else {
+                bConnected = true;
+            }
+        };
 
 
         if (this.myDataBinding.data) {
