@@ -15,7 +15,6 @@ class LineChart extends HTMLElement {
 
         var _setSleep = async function (iMs) {
             return new Promise(function (resolve, reject) {
-                this.toggleBusy(true);
                 setTimeout(function () {
                     resolve();
                 }.bind(this), iMs);
