@@ -6,11 +6,28 @@ class LineChart extends HTMLElement {
         this.attachShadow({ mode: 'open' });
     }
 
-    connectedCallback() {
+    async connectedCallback() {
         // Retrieve data and x-axis labels attributes
 
         const data = [] //JSON.parse(this.getAttribute('data'));
         const xLabels = []//JSON.parse(this.getAttribute('x-labels'));
+
+
+
+        var loadDate = new Promise((resolve, reject) => {
+            setTimeout((resolve) => {
+                if (this.myDataBinding?.state !== "loading") {
+                    resolve();
+                };
+            }, 3000)
+        })
+
+
+
+        if (this.myDataBinding) {
+            await loadDate();
+        }
+
 
 
         if (this.myDataBinding.data) {
