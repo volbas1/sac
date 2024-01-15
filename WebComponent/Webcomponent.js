@@ -24,7 +24,7 @@ class LineChart extends HTMLElement {
 
         while (!bConnected) {
             await _setSleep(1500);
-            if (this.myDataBinding?.state) {
+            if (this.myDataBinding?.state !== "success") {
                 bConnected = false;
             } else {
                 bConnected = true;
