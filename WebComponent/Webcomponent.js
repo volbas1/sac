@@ -19,8 +19,8 @@ class LineChart extends HTMLElement {
                 if (this.myDataBinding?.state !== "loading") {
                     resolve();
                 };
-            }, 3000)
-        })
+            }, 3000).bind(this);
+        }).bind(this)
 
 
 
